@@ -300,7 +300,6 @@ function About() {
 /* ------------------------------- How It Works ----------------------------- */
 
 const steps = [
-  { icon: Wallet, title: "Deposit XRP", desc: "Lock your XRP securely as collateral inside our audited vault contract." },
   { icon: FileCheck, title: "Apply for a Loan", desc: "Choose your loan amount, currency, and term. Submit in under two minutes." },
   { icon: CheckCircle2, title: "Get Approved", desc: "Our engine reviews your request and confirms terms — typically within the hour." },
   { icon: Send, title: "Receive Funds", desc: "Funds are dispatched directly to your wallet or bank the same day." },
