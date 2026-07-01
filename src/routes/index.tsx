@@ -656,80 +656,136 @@ function FAQ() {
 
 /* --------------------------------- Contact -------------------------------- */
 
+const WHATSAPP_URL = "https://wa.me/10000000000?text=Hi%20VaultBridgeFi%2C%20I%27d%20like%20to%20apply%20for%20an%20XRP-backed%20loan.";
+const TELEGRAM_URL = "https://t.me/VaultBridgeFi";
+
+function WhatsAppIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.892c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 005.71 1.447h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411zm-8.475 18.293c-1.826 0-3.612-.489-5.171-1.413l-.371-.22-3.844 1.002 1.028-3.734-.242-.386a9.86 9.86 0 01-1.523-5.29c.001-5.45 4.457-9.885 9.929-9.885 2.65 0 5.14 1.031 7.011 2.897 1.87 1.867 2.902 4.352 2.9 6.994-.002 5.451-4.458 9.887-9.917 9.887z"/>
+    </svg>
+  );
+}
+
 function Contact() {
+  const channels = [
+    {
+      id: "whatsapp",
+      name: "WhatsApp",
+      handle: "+1 (000) 000-0000",
+      blurb: "Fastest response — average under 5 minutes.",
+      href: WHATSAPP_URL,
+      Icon: WhatsAppIcon,
+      accent: "linear-gradient(135deg, #25D366, #128C7E)",
+    },
+    {
+      id: "telegram",
+      name: "Telegram",
+      handle: "@VaultBridgeFi",
+      blurb: "Prefer Telegram? Message our loan desk any time.",
+      href: TELEGRAM_URL,
+      Icon: Send,
+      accent: "linear-gradient(135deg, #2AABEE, #229ED9)",
+    },
+  ];
+
   return (
     <section id="contact" className="relative py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="glass-card relative overflow-hidden rounded-3xl p-8 md:p-12" style={{ boxShadow: "var(--shadow-elevated)" }}>
           <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/30 blur-3xl" />
-          <div className="grid gap-10 lg:grid-cols-2">
+          <div className="pointer-events-none absolute -left-24 bottom-0 h-96 w-96 rounded-full bg-accent/20 blur-3xl" />
+
+          <div className="relative grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <SectionLabel>Get in touch</SectionLabel>
+              <SectionLabel>Apply now</SectionLabel>
               <h2 className="font-display text-4xl font-bold md:text-5xl">
-                Ready to unlock <span className="text-gradient">liquidity?</span>
+                Apply on <span className="text-gradient">WhatsApp or Telegram</span>
               </h2>
               <p className="mt-6 text-muted-foreground">
-                Our team responds within one business hour. Reach us through your preferred channel.
+                All loan applications are handled personally by our specialists through encrypted messaging. Pick your channel — we'll walk you through collateral, terms, and same-day funding.
               </p>
 
-              <div className="mt-8 space-y-3">
+              <ul className="mt-8 space-y-3">
                 {[
-                  { icon: Mail, label: "Email", value: "hello@vaultbridge.fi" },
-                  { icon: MessageCircle, label: "Telegram", value: "@VaultBridgeFi" },
-                  { icon: Twitter, label: "Twitter / X", value: "@VaultBridgeFi" },
-                ].map((c) => (
-                  <div key={c.label} className="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-3">
-                    <div className="grid h-10 w-10 place-items-center rounded-lg" style={{ background: "var(--gradient-primary)" }}>
-                      <c.icon className="h-5 w-5 text-primary-foreground" />
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-widest text-muted-foreground">{c.label}</div>
-                      <div className="font-medium">{c.value}</div>
-                    </div>
-                  </div>
+                  "No forms — just a private chat with a real specialist",
+                  "End-to-end encrypted conversation",
+                  "Approval and terms confirmed in under an hour",
+                  "Funds released same business day",
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                    <span>{point}</span>
+                  </li>
                 ))}
-              </div>
-              <div className="mt-6 text-xs text-muted-foreground">
-                Support hours: 24/7 · Response within 1 business hour
+              </ul>
+
+              <div className="mt-8 text-xs text-muted-foreground">
+                Support hours: 24/7 · Typical first reply within 5 minutes
               </div>
             </div>
 
-            <form
-              onSubmit={(e) => { e.preventDefault(); }}
-              className="relative space-y-4 rounded-2xl border border-white/10 bg-background/40 p-6 backdrop-blur-md"
-            >
-              <div className="grid gap-4 md:grid-cols-2">
-                <label className="block">
-                  <span className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Name</span>
-                  <input required className="w-full rounded-lg border border-white/10 bg-background/60 px-4 py-3 text-sm focus:border-primary/60 focus:outline-none" placeholder="Satoshi N." />
-                </label>
-                <label className="block">
-                  <span className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Email</span>
-                  <input required type="email" className="w-full rounded-lg border border-white/10 bg-background/60 px-4 py-3 text-sm focus:border-primary/60 focus:outline-none" placeholder="you@example.com" />
-                </label>
+            <div className="grid gap-4">
+              {channels.map((c) => (
+                <motion.a
+                  key={c.id}
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -4 }}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-background/40 p-6 backdrop-blur-md transition-colors hover:border-primary/40"
+                >
+                  <div
+                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-30 blur-2xl transition-opacity group-hover:opacity-60"
+                    style={{ background: c.accent }}
+                  />
+                  <div className="relative flex items-start gap-5">
+                    <div
+                      className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl text-white"
+                      style={{ background: c.accent, boxShadow: "0 10px 40px -10px rgba(0,0,0,0.5)" }}
+                    >
+                      <c.Icon className="h-7 w-7" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-display text-xl font-semibold">Apply via {c.name}</h3>
+                        <span className="rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-medium uppercase tracking-widest text-primary">
+                          Live
+                        </span>
+                      </div>
+                      <div className="mt-1 font-mono text-sm text-muted-foreground">{c.handle}</div>
+                      <p className="mt-2 text-sm text-muted-foreground">{c.blurb}</p>
+                      <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                        Open {c.name} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.a>
+              ))}
+
+              <div className="glass rounded-2xl p-5">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white/5">
+                    <Mail className="h-4 w-4 text-muted-foreground" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-xs uppercase tracking-widest text-muted-foreground">General inquiries only</div>
+                    <div className="truncate text-sm font-medium">hello@vaultbridge.fi</div>
+                  </div>
+                </div>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  Email is not used for loan applications — please use WhatsApp or Telegram above.
+                </p>
               </div>
-              <label className="block">
-                <span className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Loan amount</span>
-                <input className="w-full rounded-lg border border-white/10 bg-background/60 px-4 py-3 text-sm focus:border-primary/60 focus:outline-none" placeholder="$50,000" />
-              </label>
-              <label className="block">
-                <span className="mb-2 block text-xs uppercase tracking-widest text-muted-foreground">Message</span>
-                <textarea rows={4} className="w-full rounded-lg border border-white/10 bg-background/60 px-4 py-3 text-sm focus:border-primary/60 focus:outline-none" placeholder="Tell us about your goals..." />
-              </label>
-              <button
-                type="submit"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
-                style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
-              >
-                Submit application <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 /* --------------------------------- Footer --------------------------------- */
 
